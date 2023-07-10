@@ -26,11 +26,20 @@ namespace MyProfile.BL.Reposoratory
         {
             var result = Db.Projects.Find(id);
             Db.Projects.Remove(result);
+            await Db.SaveChangesAsync();
         }
 
         public async Task Edit(Projects projects)
         {
-            Db.Projects.Entry(projects).State = EntityState.Modified;
+            var data = Db.Projects.Find(projects.ID);
+            if (projects.Image == null)
+            {
+
+                data.Image = data.Image;
+            }
+            data.Name = projects.Name;
+            data.Description = projects.Description;
+            data.Href= projects.Href;
             await Db.SaveChangesAsync();
 
         }
@@ -43,6 +52,10 @@ namespace MyProfile.BL.Reposoratory
             else
                 return
                      await Db.Projects.ToListAsync();
+        }
+        public async Task<Projects> GetByID(int id)
+        {
+            return await Db.Projects.Where(a => a.ID == id).FirstOrDefaultAsync();
         }
     }
 }

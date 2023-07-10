@@ -1,0 +1,13 @@
+﻿@model ProjectVM
+<form asp-action="Delete" asp-controller="Project">
+    <div class="mb-3">
+        <label asp-for="Name"  class="form-label"></label>
+        <input type="text" disabled asp-for="Name"  class="form-control" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea disabled asp-for="Description" class="form-control"  rows="3"></textarea>
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

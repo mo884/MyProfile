@@ -1,8 +1,46 @@
-﻿
+﻿@model IEnumerable<ProjectVM>
 @{
-    ViewData["Title"] = "GetALL";
+    ViewData["Title"] = "Project";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<a class="btn btn-info js-Model" data-title="Create Project" href="javascript:;" data-url="/Project/Create" data-update="true"><i class="fa-solid fa-square-plus"></i>Add</a>
+<table id="myTable" class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Project</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td><img width="150" height="150" src="~/Files/Img/@item.Image" /></td>
+                <td><a href="@item.Href">Link</a></td>
 
-<h1>GetALL</h1>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-dark " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-sharp fa-solid fa-list"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item js-Model" data-title="Edit Project" href="javascript:;" data-url="/Project/Edit/@item.ID" data-update="true">Edit</a></li>
+                            <li><a class="dropdown-item js-Model" data-title="Delete Project" href="javascript:;" data-url="/Project/Delete/@item.ID" data-update="true">Delete</a></li>
+
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+<partial name="~/views/Model/_Model.cshtml" />
+
 
