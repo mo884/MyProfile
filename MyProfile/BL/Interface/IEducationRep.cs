@@ -9,5 +9,6 @@ namespace MyProfile.BL.Interface
         Task Edit(Education education);
         Task Delete(int id);
         Task Create(Education education);
+        Task<Education> GetByID(int id);
     }
 }

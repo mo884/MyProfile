@@ -1,0 +1,54 @@
+﻿@model IEnumerable<EducationVM>
+@{
+    ViewData["Title"] = "Education";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a class="btn btn-info js-Model" data-title="Create Education" href="javascript:;" data-url="/Education/Create" data-update="true"><i class="fa-solid fa-square-plus"></i>Add</a>
+<table id="myTable" class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Start</th>
+            <th>Finall Time</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>@item.Start</td>
+                <td>@item.FinalTime</td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-dark " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-sharp fa-solid fa-list"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item js-Model" data-title="Edit Education" href="javascript:;" data-url="/Education/Edit/@item.ID" data-update="true">Edit</a></li>
+                            <li><a class="dropdown-item js-Model" data-title="Delete Education" href="javascript:;" data-url="/Education/Delete/@item.ID" data-update="true">Delete</a></li>
+                           
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+       
+       
+    </tbody>
+</table>
+<partial name="~/views/Model/_Model.cshtml" />
+@section Scripts{
+    <script>
+
+
+        let table = new DataTable('#myTable', {
+            // config options...
+        });
+    </script>
+
+}
+

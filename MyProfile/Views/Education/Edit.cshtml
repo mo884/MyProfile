@@ -1,0 +1,22 @@
+﻿@model EducationVM
+<form asp-action="Edit" asp-controller="Education">
+    <div class="mb-3">
+        <label asp-for="Title"  for="exampleInputEmail1" class="form-label"></label>
+        <input type="text" asp-for="Title" class="form-control" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Description" for="exampleFormControlTextarea1" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control"  rows="3"></textarea>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Start" class="form-check-label" for="exampleCheck1"></label>
+        <input type="date" asp-for="Start" class="form-control"  aria-describedby="emailHelp">
+
+    </div>
+    <div class="mb-3">
+        <label asp-for="FinalTime" class="form-check-label" for="exampleCheck1"></label>
+        <input type="date" asp-for="FinalTime" class="form-control"  aria-describedby="emailHelp">
+
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

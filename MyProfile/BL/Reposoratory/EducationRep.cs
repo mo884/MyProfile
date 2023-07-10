@@ -26,6 +26,7 @@ namespace MyProfile.BL.Reposoratory
         {
             var result = Db.Educations.Find(id);
             Db.Educations.Remove(result);
+            await Db.SaveChangesAsync();
         }
 
       
@@ -45,6 +46,11 @@ namespace MyProfile.BL.Reposoratory
             else
                 return
                      await Db.Educations.ToListAsync();
+        }
+
+        public async Task<Education> GetByID(int id)
+        {
+           return await Db.Educations.Where(a=> a.ID == id).FirstOrDefaultAsync();
         }
     }
 }

@@ -3,16 +3,21 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>@ViewData["Title"] - Bookify</title>
+	<title>@ViewData["Title"] - MyProfile</title>
 	<!--begin::Fonts-->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
 	<!--end::Fonts-->
 	<!--begin::Global Stylesheets Bundle(used by all pages)-->
 	<link rel="stylesheet" href="~/assets/css/plugins.bundle.css" type="text/css" />
 	<link rel="stylesheet" href="~/assets/css/style.bundle.css" type="text/css" />
+	<!--Table-->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.css" />
+	<!--Icon-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<!--end::Global Stylesheets Bundle-->
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/Bookify.Web.styles.css" asp-append-version="true" />
+
 </head>
 <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed">
 	<!--begin::Theme mode setup on page load-->
@@ -63,7 +68,33 @@
 	<script src="~/assets/js/plugins.bundle.js"></script>
 	<script src="~/assets/js/scripts.bundle.js"></script>
 	<!--end::Global Javascript Bundle-->
+	<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
+	
 	@await RenderSectionAsync("Scripts", required: false)
+	<script>
+
+		$('.js-Model').on('click', function () {
+			var btn = $(this);
+			var modal = $('#Modal');
+			modal.find('#ModalLabel').text(btn.data('title'));
+
+			console.log(1);
+			$.get({
+				url: btn.data('url'),
+				success: function (form) {
+					modal.find('.modal-body').html(form);
+					$.validator.unobtrusive.parse(modal);
+				},
+				error: function () {
+					showErrorMessage();
+				}
+			});
+
+			modal.modal('show');
+		})
+
+	</script>
 </body>
 </html>
