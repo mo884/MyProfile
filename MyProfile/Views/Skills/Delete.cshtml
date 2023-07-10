@@ -1,0 +1,10 @@
+﻿@model SkillsVM
+<form asp-action="Delete" asp-controller="Skills">
+    <div class="mb-3">
+        <label asp-for="Name"  class="form-label"></label>
+        <input type="text" disabled asp-for="Name"  class="form-control" aria-describedby="emailHelp">
+    </div>
+   
+  
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

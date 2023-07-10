@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SkillsVM>
+@{
+    ViewData["Title"] = "Skills";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a class="btn btn-info js-Model" data-title="Create Skill" href="javascript:;" data-url="/Skills/Create" data-update="true"><i class="fa-solid fa-square-plus"></i>Add</a>
+<table id="myTable" class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+               
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-dark " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-sharp fa-solid fa-list"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item js-Model" data-title="Edit Skill" href="javascript:;" data-url="/Skills/Edit/@item.ID" data-update="true">Edit</a></li>
+                            <li><a class="dropdown-item js-Model" data-title="Delete Skill" href="javascript:;" data-url="/Skills/Delete/@item.ID" data-update="true">Delete</a></li>
+
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+<partial name="~/views/Model/_Model.cshtml" />
+
+

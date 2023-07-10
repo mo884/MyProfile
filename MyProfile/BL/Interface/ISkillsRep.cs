@@ -9,6 +9,7 @@ namespace MyProfile.BL.Interface
         Task Edit(Skills skills);
         Task Delete(int id);
         Task<Skills>Create(Skills skills);
+        Task<Skills> GetByID(int id);
 
     }
 }
