@@ -10,5 +10,6 @@ namespace MyProfile.BL.ModelVM
         public string Email { get; set; }
         [Required(ErrorMessage ="Requires *")]
         public string Passward { get; set; }
+        public bool RemberMe { get; set; } = true;
     }
 }

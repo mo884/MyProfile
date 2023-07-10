@@ -255,6 +255,48 @@ namespace MyProfile.Migrations
                     b.ToTable("Educations");
                 });
 
+            modelBuilder.Entity("MyProfile.DAL.Entites.ProfileEngineer", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Adress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Birthday")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FaceBook")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Freelance")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("GitHub")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LinkedIn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNummber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("profile");
+                });
+
             modelBuilder.Entity("MyProfile.DAL.Entites.Projects", b =>
                 {
                     b.Property<int>("ID")
@@ -292,6 +334,9 @@ namespace MyProfile.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Pricent")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 

@@ -24,9 +24,9 @@ namespace MyProfile.BL.Reposoratory
             return result;
         }
 
-        public async Task Delete(int id)
+        public async Task Remove(int id)
         {
-            var result = Db.Skills.Find(id);
+            var result =await Db.Skills.Where(a=> a.ID ==id).FirstOrDefaultAsync();
             Db.Skills.Remove(result);
             await Db.SaveChangesAsync();
         }

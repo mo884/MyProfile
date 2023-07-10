@@ -7,7 +7,7 @@ namespace MyProfile.BL.Interface
     {
         Task<IEnumerable<Skills>> GetAll(Expression<Func<Skills, bool>> filter = null);
         Task Edit(Skills skills);
-        Task Delete(int id);
+        Task Remove(int id);
         Task<Skills>Create(Skills skills);
         Task<Skills> GetByID(int id);
 

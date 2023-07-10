@@ -28,7 +28,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     });
 
 
-builder.Services.AddIdentityCore<Admin>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentityCore<Admin>(options => options.SignIn.RequireConfirmedAccount = false)
 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddTokenProvider<DataProtectorTokenProvider<Admin>>(TokenOptions.DefaultProvider);
@@ -57,7 +57,7 @@ builder.Services.AddAutoMapper(x => x.AddProfile(new DomainProfile()));
 
 //AddScope 
 builder.Services.AddScoped(typeof(IEducationRep), typeof(EducationRep));
-builder.Services.AddScoped(typeof(ISkillsRep), typeof(SkillsRep));
+builder.Services.AddScoped(typeof(ISkillsRep), typeof(SkillesRep));
 builder.Services.AddScoped(typeof(IProjectRep), typeof(ProjectRep));
 
 var app = builder.Build();

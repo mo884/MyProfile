@@ -1,0 +1,52 @@
+﻿@model AdminVM
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="~/lib/retrosupply-jlwvautloaq-unsplash.jpg"
+                     class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <form asp-action="Registration" asp-controller="Account">
+
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input asp-for="Email" type="email" id="form3Example3" class="form-control form-control-lg"
+                               placeholder="Enter a valid email address" />
+                       
+                    </div>
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input asp-for="UserName" type="text" id="form3Example3" class="form-control form-control-lg"
+                               placeholder="Enter a valid email address" />
+                       
+                    </div>
+                    <!-- Password input -->
+                    <div class="form-outline mb-3">
+                        <input type="password" asp-for="Password" id="form3Example4" class="form-control form-control-lg"
+                               placeholder="Enter password" />
+                        
+                       
+                    </div>
+
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-primary btn-lg"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                            Registration
+                        </button>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+</section>
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>

@@ -85,7 +85,7 @@ namespace MyProfile.Controllers.AdminProfile
             try
             {
                 var result = mapper.Map<Skills>(skillsVM);
-                await skills.Delete(result.ID);
+                await skills.Remove(result.ID);
                 return RedirectToAction("GetAll");
             }
             catch (Exception ex)

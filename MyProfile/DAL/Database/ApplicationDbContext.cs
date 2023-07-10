@@ -11,6 +11,7 @@ namespace MyProfile.DAL.Database
         public DbSet<Skills> Skills { get; set; }
         public DbSet<Projects> Projects { get; set; }
         public DbSet<Education> Educations { get; set; }
+        public DbSet<ProfileEngineer> profile { get; set; }
 
     }
 }

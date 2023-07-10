@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MyProfile.Controllers.AdminProfile
+namespace MyProfile.Controllers.MYProfile
 {
-    public class AccoutController : Controller
+    public class ProfileController : Controller
     {
         public IActionResult Index()
         {
