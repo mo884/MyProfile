@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MyProfile.BL.Interface;
+using MyProfile.BL.Reposoratory;
 using MyProfile.DAL.Database;
 using MyProfile.DAL.Entites;
+using MyProfile.Mapper;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -49,6 +52,13 @@ builder.Services.AddIdentity<Admin, IdentityRole>(options =>
     options.Password.RequiredUniqueChars = 0;
 }).AddEntityFrameworkStores<ApplicationDbContext>();
 
+//Auto Mapper
+builder.Services.AddAutoMapper(x => x.AddProfile(new DomainProfile()));
+
+//AddScope 
+builder.Services.AddScoped(typeof(IEducationRep), typeof(EducationRep));
+builder.Services.AddScoped(typeof(ISkillsRep), typeof(SkillsRep));
+builder.Services.AddScoped(typeof(IProjectRep), typeof(ProjectRep));
 
 var app = builder.Build();
 
