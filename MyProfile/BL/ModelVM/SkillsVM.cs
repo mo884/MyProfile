@@ -8,5 +8,6 @@ namespace MyProfile.BL.ModelVM
         public int ID { get; set; }
         [Required(ErrorMessage = "*")]
         public string Name { get; set; }
+        public int Pricent { get; set; }
     }
 }

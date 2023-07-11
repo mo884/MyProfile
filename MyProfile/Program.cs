@@ -59,6 +59,9 @@ builder.Services.AddAutoMapper(x => x.AddProfile(new DomainProfile()));
 builder.Services.AddScoped(typeof(IEducationRep), typeof(EducationRep));
 builder.Services.AddScoped(typeof(ISkillsRep), typeof(SkillesRep));
 builder.Services.AddScoped(typeof(IProjectRep), typeof(ProjectRep));
+builder.Services.AddScoped(typeof(IProfileRep), typeof(ProfileRep));
+builder.Services.AddScoped(typeof(ICVRep), typeof(CVRep));
+
 
 var app = builder.Build();
 
@@ -74,11 +77,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Education}/{action=GetAll}/{id?}");
+    pattern: "{controller=MYProfile}/{action=MyProfile}/{id?}");
 
 app.Run();

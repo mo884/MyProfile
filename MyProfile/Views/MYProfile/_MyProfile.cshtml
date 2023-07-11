@@ -1,0 +1,12 @@
+﻿@model ProfileVM
+<div class="profile">
+    <img src="~/files/img/@Model.Image" alt="" class="img-fluid rounded-circle">
+    <h1 class="text-light"><a href="index.html">@Model.FullName</a></h1>
+    <div class="social-links mt-3 text-center">
+
+        <a href="@Model.FaceBook" class="facebook"><i class="bx bxl-facebook"></i></a>
+
+        <a href="@Model.Email" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="@Model.LinkedIn" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+    </div>
+</div>

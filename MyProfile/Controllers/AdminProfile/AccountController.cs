@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyProfile.BL.Helper;
 using MyProfile.BL.ModelVM;
 using MyProfile.DAL.Entites;
 using System;
+using System.Data;
 
 namespace MyProfile.Controllers.AdminProfile
 {
@@ -29,41 +31,71 @@ namespace MyProfile.Controllers.AdminProfile
         public IActionResult Login()
         {
             return PartialView("Login");
-        }
+        } 
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginVM model)
         {
-            // var userName = await userManager.FindByNameAsync(model.UserName);
-            var userEmail = await userManager.FindByEmailAsync(model.Email);
-
-            dynamic result;
-
-
-
-
-            if (userEmail != null)
+            try
             {
-                result = await signInManager.PasswordSignInAsync(userEmail, model.Passward, model.RemberMe, false);
-                if (result.Succeeded)
+
+				dynamic result;
+				if (model.Email!=null&&model.Passward!=null)
                 {
+					var userEmail = await userManager.FindByEmailAsync(model.Email.Trim());
+					if (userEmail != null)
+					{
+						result = await signInManager.PasswordSignInAsync(userEmail, model.Passward, true, false);
+						if (result.Succeeded)
+						{
 
-                    return RedirectToAction("GetAll", "Education");
+							return RedirectToAction("GetAll", "Education");
 
 
+						}
+                        else
+                        {
+							TempData["error"] = "Email Not Register";
+							return PartialView("Login", model);
+						}
+
+
+
+
+					}
+					else
+					{
+						return PartialView("Login", model);
+					}
+				}
+                else
+                {
+                    TempData["error"] = "Email Not Register";
                 }
+				
+
+				
 
 
 
 
+				
+			}
+            catch (Exception)
+            {
+
+                throw;
             }
+			// var userName = await userManager.FindByNameAsync(model.UserName);
 
 
-           return PartialView("Login", model);
+			return PartialView("Login", model);
 
 
 
-        }
+
+		}
+        [Authorize]
 
         #region Registration 
         [HttpGet]
@@ -107,6 +139,15 @@ namespace MyProfile.Controllers.AdminProfile
 
         }
         #endregion
+        #region Sign Out
 
+        [HttpGet]
+        public async Task<IActionResult> LogOff(string id)
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Login");
+        }
+
+        #endregion
     }
 }

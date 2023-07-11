@@ -1,12 +1,16 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyProfile.BL.Helper;
 using MyProfile.BL.Interface;
 using MyProfile.BL.ModelVM;
 using MyProfile.DAL.Entites;
+using System.Data;
 
 namespace MyProfile.Controllers.AdminProfile
 {
+    [Authorize]
+
     public class SkillsController : Controller
     {
         private readonly ISkillsRep skills;

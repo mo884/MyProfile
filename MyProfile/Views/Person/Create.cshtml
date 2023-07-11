@@ -1,0 +1,49 @@
+﻿@model ProfileVM
+<form asp-action="Create" asp-controller="Person" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label asp-for="FullName" class="form-label"></label>
+        <input type="text" asp-for="FullName" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="GitHub" class="form-label"></label>
+        <input type="text" asp-for="GitHub" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="LinkedIn" class="form-label"></label>
+        <input type="text" asp-for="LinkedIn" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Adress" class="form-label"></label>
+        <input type="text" asp-for="Adress" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input type="text" asp-for="Email" class="form-control">
+    </div>
+     <div class="mb-3">
+                 <label asp-for="Freelance" class="form-label"></label>
+
+        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" asp-for="Freelance">
+            <option value="true">Yes</option>
+                        <option value="false">false</option>
+
+        </select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="PhoneNummber" class="form-label"></label>
+        <input type="text" asp-for="PhoneNummber" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Birthday" class="form-label"></label>
+        <input type="date" asp-for="Birthday" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="PathImage" class="form-label" ></label>
+        <input type="file" asp-for="PathImage" class="form-control" >
+
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

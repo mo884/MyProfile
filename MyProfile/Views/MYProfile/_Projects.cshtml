@@ -1,0 +1,11 @@
+﻿@model IEnumerable<ProjectVM>
+<h3 class="resume-title">Projects</h3>
+@foreach (var item in Model)
+{
+    <div class="resume-item">
+        <h4>@item.Name</h4>
+        <h5><a href="@item.Href">Show</a></h5>
+
+        <p>@item.Description</p>
+    </div>
+}

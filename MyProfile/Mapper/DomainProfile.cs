@@ -20,6 +20,10 @@ namespace MyProfile.Mapper
 
             CreateMap<Projects, ProjectVM>();
             CreateMap<ProjectVM, Projects>();
+
+
+            CreateMap<ProfileEngineer, ProfileVM>();
+            CreateMap<ProfileVM, ProfileEngineer>();
         }
     }
 }

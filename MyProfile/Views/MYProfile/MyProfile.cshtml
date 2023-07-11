@@ -1,0 +1,122 @@
+﻿@model ProfileCVVM
+@{
+    ViewData["Title"] = "MyProfile";
+    Layout = "~/Views/ViewLayout/_Layout.cshtml";
+}
+
+@section Profile{
+    <partial name="~/views/MYProfile/_MyProfile.cshtml" model="Model.Profile" />
+}
+
+<partial name="~/views/MYProfile/_Profile.cshtml" model="Model.Profile" />
+
+
+
+<main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+        <div class="container">
+
+            <partial name="~/views/MYProfile/_About.cshtml" model="Model.Profile" />
+
+
+        </div>
+    </section><!-- End About Section -->
+    <!-- ======= Facts Section ======= -->
+   
+    <!-- ======= Skills Section ======= -->
+    <section id="skills" class="skills section-bg">
+        <div class="container">
+
+
+            <partial name="~/views/MYProfile/_Skills.cshtml" model="Model.Skills" />
+
+
+        </div>
+    </section><!-- End Skills Section -->
+    <!-- ======= Resume Section ======= -->
+    <section id="resume" class="resume">
+        <div class="container">
+
+          
+
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-up">
+
+                    <partial name="~/views/MYProfile/_Education.cshtml" model="Model.Educations" />
+
+                   
+                </div>
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+
+                    <partial name="~/views/MYProfile/_Projects.cshtml" model="Model.Projects" />
+
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Resume Section -->
+  
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Contact</h2>
+            </div>
+
+            <div class="row" data-aos="fade-in">
+
+                <div class="col-lg-5 d-flex align-items-stretch">
+                    <div class="info">
+                        <div class="address">
+                            <i class="bi bi-geo-alt"></i>
+                            <h4>Location:</h4>
+                            <p>@Model.Profile.Adress</p>
+                        </div>
+
+                        <div class="email">
+                            <i class="bi bi-envelope"></i>
+                            <h4>Email:</h4>
+                            <p>@Model.Profile.Email</p>
+                        </div>
+
+                        <div class="phone">
+                            <i class="bi bi-phone"></i>
+                            <h4>Call:</h4>
+                            <p>@Model.Profile.PhoneNummber</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+                    <form asp-action="SendMail" asp-controller="MYProfile"  class="form">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="name">Your Name</label>
+                                <input type="text" name="name" class="form-control" id="name" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name">Your Email</label>
+                                <input type="email" class="form-control" name="Email" id="email" required>
+                            </div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="name">Message</label>
+                            <textarea class="form-control" name="Message" rows="10" required></textarea>
+                        </div>
+                      
+                        <div class="text-center"><button class="btn btn-primary" type="submit">Send Message</button></div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Contact Section -->
+
+</main><!-- End #main -->

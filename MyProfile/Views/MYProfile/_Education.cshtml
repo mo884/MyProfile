@@ -1,0 +1,13 @@
+﻿@model IEnumerable<EducationVM>
+
+<h3 class="resume-title">Education</h3>
+
+@foreach (var item in Model)
+{
+    <div class="resume-item">
+        <h4>@item.Title</h4>
+        <h5>@item.Start.Month/ @item.Start.Year - @item.FinalTime.Value.Month / @item.FinalTime.Value.Year</h5>
+        <p><em>@item.Description</em></p>
+    </div>
+
+}

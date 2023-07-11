@@ -1,0 +1,10 @@
+﻿@model ProfileVM
+<form asp-action="Delete" asp-controller="Person" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label asp-for="FullName" class="form-label"></label>
+        <input type="text" asp-for="FullName" class="form-control">
+    </div>
+   
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

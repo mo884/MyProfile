@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MyProfile.BL.Helper;
 using MyProfile.BL.Interface;
 using MyProfile.BL.ModelVM;
 using MyProfile.DAL.Entites;
@@ -8,23 +9,25 @@ using System.Data;
 
 namespace MyProfile.Controllers.AdminProfile
 {
-    [Authorize(Roles ="Admin")]
-    public class EducationController : Controller
+    [Authorize]
+
+    public class PersonController : Controller
     {
-        private readonly IEducationRep education;
+
+        private readonly IProfileRep profile;
         private readonly IMapper mapper;
-        public EducationController(IEducationRep education, IMapper mapper)
+        public PersonController(IProfileRep profile, IMapper mapper)
         {
-            this.education = education;
+            this.profile = profile;
             this.mapper = mapper;
         }
         [HttpGet]
-        public async Task<IActionResult>  GetAll()
+        public async Task<IActionResult> GetAll()
         {
             try
             {
-                var data = await education.GetAll();
-                var result = mapper.Map<IEnumerable<EducationVM> >(data);
+                var data = await profile.GetAll();
+                var result = mapper.Map<IEnumerable<ProfileVM>>(data);
                 return View(result);
             }
             catch (Exception)
@@ -32,16 +35,17 @@ namespace MyProfile.Controllers.AdminProfile
 
                 throw;
             }
-           
+
         }
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             try
             {
-                var data = await education.GetByID(id);
-                var result = mapper.Map<EducationVM>(data);
-                return PartialView("Edit",result);
+
+                var data = await profile.GetByID(id);
+                var result = mapper.Map<ProfileVM>(data);
+                return PartialView("Edit", result);
             }
             catch (Exception)
             {
@@ -50,31 +54,32 @@ namespace MyProfile.Controllers.AdminProfile
             }
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(EducationVM educationVM)
+        public async Task<IActionResult> Edit(ProfileVM profileVM)
         {
             try
             {
-
-                var result = mapper.Map<Education>(educationVM);
-                await education.Edit(result);
+                if (profileVM.PathImage != null)
+                    profileVM.Image = FileUploader.UploadFile("Img", profileVM.PathImage);
+                var result = mapper.Map<ProfileEngineer>(profileVM);
+                await profile.Update(result);
                 return RedirectToAction("GetAll");
             }
             catch (Exception ex)
             {
 
                 TempData["error"] = ex.Message;
-                return PartialView("Edit", educationVM);
+                return PartialView("Edit", profileVM);
             }
-          
+
         }
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                var data = await education.GetByID(id);
-                var result = mapper.Map<EducationVM>(data);
-                return PartialView("Delete",result);
+                var data = await profile.GetByID(id);
+                var result = mapper.Map<ProfileVM>(data);
+                return PartialView("Delete", result);
             }
             catch (Exception)
             {
@@ -83,18 +88,18 @@ namespace MyProfile.Controllers.AdminProfile
             }
         }
         [HttpPost]
-        public async Task<IActionResult> Delete(EducationVM educationVM)
+        public async Task<IActionResult> Delete(ProfileVM profileVM)
         {
             try
             {
-                var result = mapper.Map<Education>(educationVM);
-                await education.Delete(result.ID);
+                var result = mapper.Map<ProfileEngineer>(profileVM);
+                await profile.Delete(result.ID);
                 return RedirectToAction("GetAll");
             }
             catch (Exception ex)
             {
                 TempData["error"] = ex.Message;
-                return PartialView("Delete", educationVM);
+                return PartialView("Delete", profileVM);
             }
         }
 
@@ -103,7 +108,7 @@ namespace MyProfile.Controllers.AdminProfile
         {
             try
             {
-                
+
                 return PartialView("Create");
             }
             catch (Exception)
@@ -113,18 +118,20 @@ namespace MyProfile.Controllers.AdminProfile
             }
         }
         [HttpPost]
-        public async Task<IActionResult> Create(EducationVM educationVM)
+        public async Task<IActionResult> Create(ProfileVM profileVM)
         {
             try
             {
-                var result = mapper.Map<Education>(educationVM);
-                await education.Create(result);
+                profileVM.Image = FileUploader.UploadFile("Img", profileVM.PathImage);
+
+                var result = mapper.Map<ProfileEngineer>(profileVM);
+                await profile.Create(result);
                 return RedirectToAction("GetAll");
             }
             catch (Exception ex)
             {
                 TempData["error"] = ex.Message;
-                return PartialView("Delete", educationVM);
+                return PartialView("Delete", profileVM);
             }
         }
     }

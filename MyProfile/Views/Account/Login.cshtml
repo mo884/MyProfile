@@ -2,6 +2,7 @@
 
 <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 <section class="vh-100">
+ 
     <div class="container-fluid h-custom">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-md-9 col-lg-6 col-xl-5">
@@ -10,7 +11,7 @@
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                 <form asp-action="Login" asp-controller="Account">
-
+                     
 
                     <!-- Email input -->
                     <div class="form-outline mb-4">
@@ -34,7 +35,10 @@
                         </button>
 
                     </div>
-
+                    @if (TempData["error"] != null)
+                    {
+                        <span class="text-danger fw-bold">@TempData["error"]</span>
+                    }
                 </form>
             </div>
         </div>
@@ -44,3 +48,5 @@
     </div>
 </section>
 <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

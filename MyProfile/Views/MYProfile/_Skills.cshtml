@@ -1,0 +1,44 @@
+﻿@model IEnumerable<SkillsVM>
+
+<div class="section-title">
+    <h2>Skills</h2>
+    <p>Take a look at my projects, skills, and education.</p>
+</div>
+
+<div class="row skills-content">
+
+    <div class="col-lg-6" data-aos="fade-up">
+        @foreach (var item in Model.Take((Model.Count() / 2) + 1))
+        {
+            <div class="progress">
+                <span class="skill">@item.Name <i class="val">@item.Pricent%</i></span>
+                <div class="progress-bar-wrap">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="@item.Pricent" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+        }
+
+
+
+
+    </div>
+
+    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+        @foreach (var item in Model.Skip((Model.Count() / 2) + 1))
+        {
+
+            <div class="progress">
+                <span class="skill">@item.Name <i class="val">@item.Pricent%</i></span>
+                <div class="progress-bar-wrap">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="@item.Pricent" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+
+        }
+
+
+
+
+
+    </div>
+</div>
